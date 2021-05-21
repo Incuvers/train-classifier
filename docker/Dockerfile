@@ -9,13 +9,15 @@ WORKDIR /srv
 
 # Generate locale.
 RUN apt update && apt dist-upgrade --yes && apt install --yes sudo locales && locale-gen en_US.UTF-8
-
 RUN echo input model : ${INPUT_MODEL}
-# load in model
-COPY ${INPUT_MODEL} srv/${INPUT_MODEL}
 
+# load in model and runner script
+COPY ${INPUT_MODEL} srv/${INPUT_MODEL}
+COPY run.sh srv/run.sh
 # install required pip and apt dependancies
 # RUN xargs -a ${INPUT_MODEL}/apt-pkgs.txt sudo apt install -y --no-install-recommends
+
+
 RUN python3 -m pip install -r ${INPUT MODEL}/requirements.txt
 
-ENTRYPOINT [ "/train.sh" ]
+ENTRYPOINT [ "/run.sh" ]

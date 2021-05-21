@@ -23,8 +23,6 @@ printf "%b" "${OKB}Starting training job${NC}\n"
 python3 -m "$INPUT_MODEL"
 printf "%b" "${OKG} ✓ ${NC}Training completed successfully"
 
-
-
 # Notify slack channel of build success
 printf "%b" "${OKB}Notifying slack channel of training completion success.${NC}"
 curl -X POST -H 'Content-type: application/json' \
