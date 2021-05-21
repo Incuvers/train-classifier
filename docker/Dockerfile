@@ -1,0 +1,21 @@
+FROM ubuntu:latest
+
+LABEL Christian Sargusingh "https://github.com/cSDes1gn"
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Set the work directory and create the folder to copy source code into
+WORKDIR /srv
+
+# Generate locale.
+RUN apt update && apt dist-upgrade --yes && apt install --yes sudo locales && locale-gen en_US.UTF-8
+
+RUN echo input model : ${INPUT_MODEL}
+# load in model
+COPY ${INPUT_MODEL} srv/${INPUT_MODEL}
+
+# install required pip and apt dependancies
+# RUN xargs -a ${INPUT_MODEL}/apt-pkgs.txt sudo apt install -y --no-install-recommends
+RUN python3 -m pip install -r ${INPUT MODEL}/requirements.txt
+
+ENTRYPOINT [ "/train.sh" ]

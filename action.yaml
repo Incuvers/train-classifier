@@ -1,0 +1,24 @@
+---
+name: Train Classifier 
+author: Christian Sargusingh
+description: Trains a new machine learning classifer and uploads the artefacts to github
+inputs:
+  SLACK_IDENTIFIER:
+    description: 'Slack channel webhook path'
+    required: true
+  MODEL:
+    description: 'train target model'
+    required: true
+  OUTPUT:
+    description: 'artefact output directory'
+    required: false
+    default: 'artefacts'
+
+runs:
+  using: 'docker'
+  image: 'docker/Dockerfile'
+  # passed as environment variables in docker image build
+  args:
+    - ${{ inputs.MODEL }}
+    - ${{ inputs.SLACK_IDENTIFIER }}
+    - ${{ inputs.OUTPUT }}
