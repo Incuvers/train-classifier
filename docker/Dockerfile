@@ -17,7 +17,6 @@ COPY run.sh srv/run.sh
 # install required pip and apt dependancies
 # RUN xargs -a ${INPUT_MODEL}/apt-pkgs.txt sudo apt install -y --no-install-recommends
 
-
 RUN python3 -m pip install -r ${INPUT MODEL}/requirements.txt
 
 ENTRYPOINT [ "/run.sh" ]
