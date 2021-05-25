@@ -11,6 +11,8 @@ RUN apt install -y git
 RUN mkdir /root/.ssh
 ARG PRIVATE_DEPLOY_KEY
 RUN echo "${PRIVATE_DEPLOY_KEY}" > /root/.ssh/id_rsa
+# restrict permissions of keyfile
+RUN chmod 0700 /root/.ssh/id_rsa
 # make sure your domain is accepted
 RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
