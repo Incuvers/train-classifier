@@ -2,7 +2,7 @@
 
 printf "%b" "${OKB}Starting training job${NC}\n"
 cd "$MODEL" || exit 1
-python3 train.py
+python3 train.py || exit 1
 printf "%b" "${OKG} ✓ ${NC}Training completed successfully\n"
 
 printf "%b" "${OKB}Compiling artefacts in ${OKG}${OUTPUT}${OKB} to ${OKG}/tmp/${NC}"
