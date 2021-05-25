@@ -3,9 +3,6 @@ name: Train Classifier
 author: Christian Sargusingh
 description: Trains a new machine learning classifer and uploads the artefacts to github
 inputs:
-  PRIVATE_DEPLOY_KEY:
-    description: 'deploy key for accessing the ml repository'
-    required: true
   SLACK_IDENTIFIER:
     description: 'Slack channel webhook path'
     required: true
@@ -13,16 +10,21 @@ inputs:
     description: 'train target model'
     required: true
   OUTPUT:
-    description: 'artefact output directory'
-    required: false
-    default: 'artefacts'
+    description: 'training output directory'
+    required: true
 
 runs:
-  using: 'docker'
-  image: 'docker/Dockerfile'
-  # passed as environment variables in docker image build
-  args:
-    - ${{ inputs.PRIVATE_DEPLOY_KEY }}
-    - ${{ inputs.MODEL }}
-    - ${{ inputs.SLACK_IDENTIFIER }}
-    - ${{ inputs.OUTPUT }}
+  using: 'composite'
+  steps:
+    - name: build docker image target model
+      run: ${{ github.action_path }}/scripts/build.sh
+      shell: bash
+      env:
+        MODEL: ${{ inputs.MODEL }}
+        SLACK_IDENTIFIER: ${{ inputs.SLACK_IDENTIFIER }}
+    - name: run model container
+      run: ${{ github.action_path }}/scripts/run.sh
+      shell: bash
+      env:
+        OUTPUT: ${{ inputs.OUTPUT }}
+        SLACK_IDENTIFIER: ${{ inputs.SLACK_IDENTIFIER }}
