@@ -22,6 +22,8 @@ handler () {
     fi
 }
 
+env
+
 printf "%b" "${OKB}Building image for model: $MODEL${NC}\n"
 # find checkout folder
 docker build \
