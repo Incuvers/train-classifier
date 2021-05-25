@@ -22,6 +22,9 @@ handler () {
     fi
 }
 
+# path to checkout (custom for titan server builds)
+cp -R /opt/actions-runner/work/handwriting-recognition docker/.
+
 printf "%b" "${OKB}Building image for model: $MODEL${NC}\n"
 # find checkout folder
 docker build \
