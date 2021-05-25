@@ -9,14 +9,13 @@ RUN apt update && apt dist-upgrade --yes && apt install --yes sudo locales && lo
 RUN apt install -y git
 
 RUN mkdir /root/.ssh
-# This expects host machine to have an hr deploy key and config for key alias
-ADD ~/.ssh/hr_deploy_key /root/.ssh/
-ADD ~/.ssh/config /root/.ssh/
+ARG PRIVATE_DEPLOY_KEY
+RUN echo "${PRIVATE_DEPLOY_KEY}" > /root/.ssh/id_rsa
 # make sure your domain is accepted
 RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 # pull using deploy key and alias host setup
-RUN git clone git@github.com-hr:Incuvers/handwriting-recognition.git
+RUN git clone git@github.com:Incuvers/handwriting-recognition.git
 
 # multistage build to squash private key and ssh config
 FROM ubuntu:latest
