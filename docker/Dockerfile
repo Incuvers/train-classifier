@@ -28,7 +28,7 @@ RUN apt install -y python3 python3-pip
 WORKDIR /srv
 
 COPY runner.sh srv/runner.sh
-ADD handwriting-recognition srv/
+ADD handwriting-recognition /srv
 RUN ls -la
 # install required pip and apt dependancies for selected model
 # RUN xargs -a ${MODEL}/apt-pkgs.txt sudo apt install -y --no-install-recommends
