@@ -36,4 +36,4 @@ ADD handwriting-recognition /srv
 RUN python3 -m pip install --upgrade pip && \
     python3 -m pip install -r ${MODEL}/requirements.txt --default-timeout=300
 
-ENTRYPOINT [ "/runner.sh" ]
+ENTRYPOINT [ "runner.sh" ]
