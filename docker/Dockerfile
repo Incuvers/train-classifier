@@ -1,4 +1,4 @@
-FROM ubuntu:latest as stage
+FROM tensorflow/tensorflow:latest-gpu-py3
 
 LABEL Christian Sargusingh "https://github.com/cSDes1gn"
 
