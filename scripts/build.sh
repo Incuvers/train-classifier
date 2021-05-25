@@ -26,6 +26,6 @@ printf "%b" "${OKB}Building image for model: $MODEL${NC}\n"
 # find checkout folder
 docker build \
     -t "$MODEL":latest \
-    -f docker/Dockerfile .\
+    -f docker/Dockerfile docker\
     --build-arg MODEL="$MODEL"
-printf "%b" "${OKG} ✓ ${NC}classifier:latest built\n"
+printf "%b" "${OKG} ✓ ${NC}$MODEL:latest built\n"
