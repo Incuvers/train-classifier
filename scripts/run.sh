@@ -32,6 +32,10 @@ handler () {
 printf "%b" "${OKB}Starting docker container from image $MODEL:latest${NC}\n"
 # run the training on model
 docker run --name classifier -v "$PWD:/tmp" -e OUTPUT="$OUTPUT" "$MODEL"
+# check exit status on container image
+if [[ $(docker inspect classifier --format='{{.State.ExitCode}}') != 0 ]]; then
+    exit 1;
+fi
 printf "%b" "${OKG} ✓ ${NC}complete\n"
 
 # Notify slack channel of build success
