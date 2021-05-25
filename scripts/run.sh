@@ -2,7 +2,7 @@
 
 set -e
 
-source .env
+source colors.env
 
 # handle all non-zero exit status codes with a slack notification
 trap 'handler $?' EXIT
