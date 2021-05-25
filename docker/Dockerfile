@@ -32,6 +32,8 @@ ADD handwriting-recognition /srv
 
 # install required pip and apt dependancies for selected model
 # RUN xargs -a ${MODEL}/apt-pkgs.txt sudo apt install -y --no-install-recommends
-RUN python3 -m pip install -r ${MODEL}/requirements.txt --default-timeout=300
+
+RUN python3 -m pip install --upgrade pip && \
+    python3 -m pip install -r ${MODEL}/requirements.txt --default-timeout=300
 
 ENTRYPOINT [ "/runner.sh" ]
