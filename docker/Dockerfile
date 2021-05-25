@@ -9,10 +9,10 @@ RUN apt update && apt dist-upgrade --yes && apt install --yes sudo locales && lo
 RUN apt install -y git
 
 RUN mkdir /root/.ssh
-ARG PRIVATE_DEPLOY_KEY
-RUN echo "${PRIVATE_DEPLOY_KEY}"
+ARG INPUT_PRIVATE_DEPLOY_KEY
+RUN echo "${INPUT_PRIVATE_DEPLOY_KEY}"
 # restrict permissions of keyfile
-RUN echo "${PRIVATE_DEPLOY_KEY}" > /root/.ssh/id_rsa && chmod 0700 /root/.ssh/id_rsa
+RUN echo "${INPUT_PRIVATE_DEPLOY_KEY}" > /root/.ssh/id_rsa && chmod 0700 /root/.ssh/id_rsa
 # make sure your domain is accepted
 RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
