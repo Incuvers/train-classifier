@@ -9,7 +9,7 @@ ENV MODEL=${MODEL}
 
 # Generate locale and install container build dependancies
 RUN apt update && apt dist-upgrade --yes && apt install --yes sudo locales && locale-gen en_US.UTF-8
-RUN apt install -y git
+RUN apt install -y python3 python3-pip
 
 # RUN mkdir /root/.ssh
 # ARG INPUT_PRIVATE_DEPLOY_KEY
