@@ -29,7 +29,7 @@ WORKDIR /srv
 
 COPY runner.sh srv/runner.sh
 ADD handwriting-recognition /srv
-RUN ls -la
+
 # install required pip and apt dependancies for selected model
 # RUN xargs -a ${MODEL}/apt-pkgs.txt sudo apt install -y --no-install-recommends
 RUN python3 -m pip install -r ${MODEL}/requirements.txt
