@@ -17,11 +17,13 @@ runs:
   using: 'composite'
   steps:
     - name: build docker image target model
-      run: ${{ github.action_path }}/scripts/build.sh
-      shell: bash
       env:
         MODEL: ${{ inputs.MODEL }}
         SLACK_IDENTIFIER: ${{ inputs.SLACK_IDENTIFIER }}
+      working-directory: ${{ github.action_path }}
+      run: ./scripts/build.sh
+      shell: bash
+
     - name: run model container
       run: ${{ github.action_path }}/scripts/run.sh
       shell: bash
