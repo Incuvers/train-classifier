@@ -26,8 +26,10 @@ handler () {
 # docker volume ls
 # docker volume inspect artefacts
 
+printf "%b" "${OKB}Starting docker container from image $MODEL:latest${NC}\n"
 # run the training on model
-docker run -it --name classifier -v "$(pwd):/tmp" -e OUTPUT="$OUTPUT" classifier
+docker run --name classifier -v "$PWD:/tmp" -e OUTPUT="$OUTPUT" "$MODEL"
+printf "%b" "${OKG} ✓ ${NC}complete\n"
 
 # Notify slack channel of build success
 printf "%b" "${OKB}Notifying slack channel of ${0##*/} success.${NC}\n"

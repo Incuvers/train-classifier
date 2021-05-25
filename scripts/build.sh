@@ -22,8 +22,10 @@ handler () {
     fi
 }
 
+printf "%b" "${OKB}Copying source code to docker build context${NC}\n"
 # path to checkout (custom for titan server builds)
 cp -R /opt/actions-runner/work/handwriting-recognition/handwriting-recognition docker/.
+printf "%b" "${OKG} ✓ ${NC}complete\n"
 
 printf "%b" "${OKB}Building image for model: $MODEL${NC}\n"
 # find checkout folder
