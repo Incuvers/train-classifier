@@ -27,7 +27,7 @@ RUN apt install -y python3 python3-pip
 
 WORKDIR /srv
 
-COPY runner.sh srv/runner.sh
+COPY runner.sh /srv/runner.sh
 ADD handwriting-recognition /srv
 
 # install required pip and apt dependancies for selected model
@@ -36,4 +36,4 @@ ADD handwriting-recognition /srv
 RUN python3 -m pip install --upgrade pip && \
     python3 -m pip install -r ${MODEL}/requirements.txt --default-timeout=300
 
-ENTRYPOINT [ "runner.sh" ]
+ENTRYPOINT [ "/srv/runner.sh" ]
