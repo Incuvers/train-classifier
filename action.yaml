@@ -20,8 +20,10 @@ runs:
       working-directory: ${{ github.action_path }}
       run: ./scripts/build.sh
       shell: bash
-
     - name: run model container
       working-directory: ${{ github.action_path }}
       run: ./scripts/run.sh
+      shell: bash
+    - name: prune
+      run: docker image prune
       shell: bash
