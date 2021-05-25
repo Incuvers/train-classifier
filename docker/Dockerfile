@@ -7,6 +7,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Set the work directory and create the folder to copy source code into
 WORKDIR /srv
 
+# pull using deploy key and alias host setup
+RUN git clone git@github.com-hr:Incuvers/handwriting-recognition.git
+
 # Generate locale.
 RUN apt update && apt dist-upgrade --yes && apt install --yes sudo locales && locale-gen en_US.UTF-8
 RUN ls -la
