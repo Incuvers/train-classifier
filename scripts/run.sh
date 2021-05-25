@@ -15,6 +15,9 @@ trap 'handler $?' EXIT
 
 handler () {
     if [ "$1" != "0" ]; then
+        printf "%b" "${FAIL}${0##*/} failure.${NC}\n"
+        printf "%b" "${OKB}${0##*/} pruning docker container: classifier for rerun.${NC}\n"
+        docker rm -f classifier
         printf "%b" "${OKB}Notifying slack channel of ${0##*/} failure.${NC}\n"
         curl -X POST -H 'Content-type: application/json' \
             --data "{\"text\":\"Model training (${0##*/}) failed with exit status: $1\"}" https://hooks.slack.com/services/"$SLACK_IDENTIFIER"
