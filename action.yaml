@@ -20,14 +20,8 @@ runs:
       working-directory: ${{ github.action_path }}
       run: ./scripts/build.sh
       shell: bash
-      # env:
-      #   MODEL: ${{ inputs.MODEL }}
-      #   SLACK_IDENTIFIER: ${{ inputs.SLACK_IDENTIFIER }}
 
     - name: run model container
       working-directory: ${{ github.action_path }}
       run: ./scripts/run.sh
       shell: bash
-      # env:
-      #   OUTPUT: ${{ inputs.OUTPUT }}
-      #   SLACK_IDENTIFIER: ${{ inputs.SLACK_IDENTIFIER }}
