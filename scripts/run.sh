@@ -35,9 +35,3 @@ if [[ $(docker inspect classifier --format='{{.State.ExitCode}}') != 0 ]]; then
     exit 1;
 fi
 printf "%b" "${OKG} ✓ ${NC}complete\n"
-
-# Notify slack channel of build success
-printf "%b" "${OKB}Notifying slack channel of ${0##*/} success.${NC}\n"
-curl -X POST -H 'Content-type: application/json' \
-    --data "{\"text\":\"Model training (${0##*/}) complete. Starting artefact upload.\"}" https://hooks.slack.com/services/"$SLACK_IDENTIFIER"
-printf "%b" "${OKG} ✓ ${NC}complete\n"
