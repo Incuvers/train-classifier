@@ -15,9 +15,9 @@ trap 'handler $?' EXIT
 
 handler () {
     if [ "$1" != "0" ]; then
-        printf "%b" "${FAIL}Notifying slack channel of ${0##*/} failure.${NC}\n"
+        printf "%b" "${FAIL}${0##*/} failure.${NC}\n"
         curl -X POST -H 'Content-type: application/json' \
-            --data "{\"text\":\"Model training (${0##*/}) failed with exit status: $1\"}" https://hooks.slack.com/services/"$SLACK_IDENTIFIER"
+            --data "{\"text\":\"Model training (${0##*/}) failed with exit status: $1\n```\n\n```\n \"}" https://hooks.slack.com/services/"$SLACK_IDENTIFIER"
         printf "%b" "${OKG} ✓ ${NC}complete\n"
     fi
 }
@@ -29,7 +29,7 @@ handler () {
 printf "%b" "${OKB}Starting docker container from image $MODEL:latest${NC}\n"
 # run the training on model
 docker rm -f classifier
-docker run --name classifier -v "$PWD:/tmp" -e OUTPUT="$OUTPUT" "$MODEL"
+docker run --gpus all --name classifier -v "$PWD:/tmp" "$MODEL"
 # check exit status on container image
 if [[ $(docker inspect classifier --format='{{.State.ExitCode}}') != 0 ]]; then
     exit 1;
