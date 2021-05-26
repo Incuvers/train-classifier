@@ -21,7 +21,7 @@ handler () {
         printf "%b" "${OKG} ✓ ${NC}complete\n"
     fi
 }
-
+env
 printf "%b" "${OKB}Copying source code to docker build context${NC}\n"
 # path to checkout (custom for titan server builds)
 cp -R /opt/actions-runner/work/handwriting-recognition/handwriting-recognition docker/.
