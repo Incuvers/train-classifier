@@ -35,3 +35,6 @@ if [[ $(docker inspect classifier --format='{{.State.ExitCode}}') != 0 ]]; then
     exit 1;
 fi
 printf "%b" "${OKG} ✓ ${NC}complete\n"
+
+# move generated artefacts to github workspace
+cp artefacts.tar.gz "$GITHUB_WORKSPACE"/.
