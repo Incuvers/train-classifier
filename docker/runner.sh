@@ -32,7 +32,8 @@ printf "%b" "${OKB}Starting training job${NC}\n"
 # TB_PID=$!
 # ngrok http 6006 &
 # NG_PID=$!
-python3 -m "$MODEL" || exit 1
+# run target model as module without pycache (for docker mount in actions runner folder)
+python3 -bm "$MODEL" || exit 1
 printf "%b" "${OKG} ✓ ${NC}Training completed successfully\n"
 # printf "%b" "${OKB}Stopping webserver monitoring${NC}\n"
 # kill -9 "$TB_PID"
