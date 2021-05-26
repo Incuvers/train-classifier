@@ -25,7 +25,6 @@ NC="\033[0m"
 printf "%b" "${OKB}Executing preconfiguration steps${NC}\n"
 mkdir "$MODEL"/model_data
 wget -P "$MODEL"/model_data https://pjreddie.com/media/files/yolov3-tiny.weights
-python3 mnist/make_data.py || exit 1
 printf "%b" "${OKG} ✓ ${NC}preconfiguration step complete\n"
 
 printf "%b" "${OKB}Starting training job${NC}\n"
