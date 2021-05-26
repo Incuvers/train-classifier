@@ -32,5 +32,5 @@ printf "%b" "${OKB}Building image for model: $MODEL${NC}\n"
 docker build \
     -t "$MODEL":latest \
     -f docker/Dockerfile docker\
-    --build-arg MODEL="$MODEL"
+    --build-arg MODEL="$MODEL" --no-cache
 printf "%b" "${OKG} ✓ ${NC}$MODEL:latest built\n"
