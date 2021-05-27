@@ -21,6 +21,6 @@ runs:
       working-directory: ${{ github.action_path }}
       run: ./scripts/run.sh
       shell: bash
-    # - name: prune
-    #   run: docker rmi && docker container prune
-    #   shell: bash
+    - name: container cleanup
+      run: docker rmi ${{ inputs.MODEL }}:latest && docker image prune 
+      shell: bash
