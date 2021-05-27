@@ -15,7 +15,6 @@ Modified: 2021-05
 ## CUDA Accelerated Machine Learning
 The server enables remote classifier training jobs to be executed on a host with an NVIDIA CUDA supported GPU with at least 4GB of VRAM. The code uses [nvidia-docker](https://github.com/NVIDIA/nvidia-docker) in combination with a [tensorflow/tensorflow:latest-gpu](https://hub.docker.com/layers/tensorflow/tensorflow/latest-gpu/images/sha256-0cb24474909c8ef0a3772c64a0fd1cf4e5ff2b806d39fd36abf716d6ea7eefb3?context=explore) docker image to mount and execute a tensorflow-powered python training with full access to the hosts CUDA cores.
 
-## Action Runner Brief
 The code in this repository is executed as defined by the [action.yaml](action.yaml) file in the root. This action can be invoked in another repository's build-spec by pointing to this action (see [Action Usage](#action-usage)). This action is not deployed to a server directly and instead is pulled by the github action runner when the build-spec requires this action. This way subsequent updates to this build action on the target branch will be automatically be pulled by the build server so it is always running the latest source code.
 
 ## Action Usage
