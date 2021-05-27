@@ -1,13 +1,13 @@
 ---
-name: Train Classifier 
+name: Train Classifier
 author: Christian Sargusingh
-description: Trains a new machine learning classifer and uploads the artefacts to github
+description: Trains a target classifer and compiles training data.
 inputs:
   SLACK_IDENTIFIER:
     description: 'Slack channel webhook path'
     required: true
   MODEL:
-    description: 'train target model'
+    description: 'Target model for training'
     required: true
 
 runs:
@@ -22,5 +22,5 @@ runs:
       run: ./scripts/run.sh
       shell: bash
     - name: container cleanup
-      run: docker rmi ${{ inputs.MODEL }}:latest && docker image prune 
+      run: docker rmi ${{ inputs.MODEL }}:latest && docker image prune
       shell: bash
