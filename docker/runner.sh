@@ -2,10 +2,8 @@
 
 # cli
 OKG="\033[92m"
-WARN="\033[93m"
 FAIL="\033[91m"
 OKB="\033[94m"
-UDL="\033[4m"
 NC="\033[0m"
 
 # handle all non-zero exit status codes with a slack notification
