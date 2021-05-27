@@ -1,4 +1,4 @@
-# Tensorflow x CUDA Preconfiguration
+# Tensorflow x CUDA Server Preconfiguration
 Modified: 2021-05
 
 ![img](img/Incuvers-black.png)
