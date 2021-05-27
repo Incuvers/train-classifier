@@ -18,9 +18,9 @@ jobs:
       - name: Shellcheck docker build script
         run: |
           shellcheck scripts/* docker/runner.sh
-  
+
   yamllint:
-    name: yamllint 
+    name: yamllint
     runs-on: ubuntu-20.04
     steps:
       - name: Check out the codebase.
