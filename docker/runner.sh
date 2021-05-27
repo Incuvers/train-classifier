@@ -7,18 +7,18 @@ OKB="\033[94m"
 NC="\033[0m"
 
 # handle all non-zero exit status codes with a slack notification
-# trap 'handler $?' EXIT
+trap 'handler $?' EXIT
 
-# handler () {
-#     if [ "$1" != "0" ]; then
-#         printf "%b" "${FAIL}${0##*/} failed during training.${NC}\n"
-#         printf "%b" "${OKB}Stopping webserver monitoring${NC}\n"
-#         kill -9 "$TB_PID"
-#         kill -9 "$NG_PID"
-#         printf "%b" "${OKG} ✓ ${NC}complete\n"
-#         exit 1
-#     fi
-# }
+handler () {
+    if [ "$1" != "0" ]; then
+        printf "%b" "${FAIL}${0##*/} failed during training.${NC}\n"
+        # printf "%b" "${OKB}Stopping webserver monitoring${NC}\n"
+        # kill -9 "$TB_PID"
+        # kill -9 "$NG_PID"
+        # printf "%b" "${OKG} ✓ ${NC}complete\n"
+        exit 1
+    fi
+}
 
 printf "%b" "${OKB}Executing preconfiguration steps${NC}\n"
 mkdir "$MODEL"/model_data
