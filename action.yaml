@@ -9,9 +9,6 @@ inputs:
   MODEL:
     description: 'train target model'
     required: true
-  OUTPUT:
-    description: 'training output directory'
-    required: true
 
 runs:
   using: 'composite'
