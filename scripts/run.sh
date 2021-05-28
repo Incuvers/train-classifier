@@ -23,9 +23,11 @@ handler () {
 printf "%b" "${OKB}Starting docker container from image $MODEL:latest${NC}\n"
 # run the training on model
 docker rm -f classifier
-docker run --gpus all --name classifier -v "$PWD:/tmp" "$MODEL"
+# docker run --gpus all --name classifier -v "$PWD:/tmp" "$MODEL"
 # check exit status on container image
-if [[ $(docker inspect classifier --format='{{.State.ExitCode}}') != 0 ]]; then
+CONTAINER_STATUS=$(docker inspect classifier --format='{{.State.ExitCode}}')
+printf "%b" "${OKB}Container exited with status ${OKG}$CONTAINER_STATUS${NC}\n"
+if [[ "$CONTAINER_STATUS" != 0 ]]; then
     exit 1;
 fi
 printf "%b" "${OKG} ✓ ${NC}complete\n"
