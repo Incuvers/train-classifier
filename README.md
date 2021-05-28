@@ -55,15 +55,35 @@ Here are the primary requirements:
 Below is a sample model entry point for the `yolo` classifer:
 ```py
 import os
+import logging
+import requests
 from pathlib import Path
-from yolo.train import main
 from distutils.dir_util import copy_tree
 from yolo.mnist.make_data import generate
+from yolo.train import main
 
-# run data preprocessing jobs
+FILENAME="yolov3-tiny.weights"
+URL="https://pjreddie.com/media/files/{}".format(FILENAME)
+
+logging.basicConfig(
+    format="%(asctime)s %(levelname)s server %(message)s",
+    level=logging.DEBUG
+)
+
+def fetch_weights() -> None:
+    md_dir = str(Path(__file__).parent.joinpath("model_data"))
+    if not os.path.exists(md_dir):
+        os.mkdir("model_data")
+    r = requests.get(URL)
+    logging.info("Downloaded weights from %s", URL)
+    with open("{}/{}".format(md_dir, FILENAME), 'wb') as f:
+        f.write(r.content)
+    logging.info("Wrote file to %s", "{}/{}".format(md_dir, FILENAME))
+
+fetch_weights()
 generate()
-# run training job
 main()
+
 # copy artefacts to global path 
 src = str(Path(__file__).parent.joinpath("checkpoints"))
 dest = str(Path(__file__).parent.parent.joinpath("artefacts"))
