@@ -8,6 +8,9 @@ FAIL="\033[91m"
 OKB="\033[94m"
 NC="\033[0m"
 
+export ACCESS_KEY_ID="$ACCESS_KEY_ID"
+export SECRET_ACCESS_KEY_ID="$SECRET_ACCESS_KEY_ID"
+
 # handle all non-zero exit status codes with a slack notification
 trap 'handler $?' EXIT
 
