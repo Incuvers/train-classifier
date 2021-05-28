@@ -23,7 +23,7 @@ handler () {
 printf "%b" "${OKB}Starting docker container from image $MODEL:latest${NC}\n"
 # run the training on model
 docker rm -f classifier
-# docker run --gpus all --name classifier -v "$PWD:/tmp" "$MODEL"
+docker run --gpus all --name classifier -v "$PWD:/tmp" "$MODEL" -e ACCESS_KEY_ID -e SECRET_ACCESS_KEY_ID
 # check exit status on container image
 CONTAINER_STATUS=$(docker inspect classifier --format='{{.State.ExitCode}}')
 printf "%b" "${OKB}Container exited with status ${OKG}$CONTAINER_STATUS${NC}\n"
@@ -33,4 +33,6 @@ fi
 printf "%b" "${OKG} ✓ ${NC}complete\n"
 
 # move generated artefacts to github workspace
-cp artefacts.tar.gz "$GITHUB_WORKSPACE"/.
+if [ -f artefacts.tar.gz ]; then
+    cp artefacts.tar.gz "$GITHUB_WORKSPACE"/.
+fi
