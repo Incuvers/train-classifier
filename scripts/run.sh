@@ -8,9 +8,6 @@ FAIL="\033[91m"
 OKB="\033[94m"
 NC="\033[0m"
 
-export ACCESS_KEY_ID="$ACCESS_KEY_ID"
-export SECRET_ACCESS_KEY_ID="$SECRET_ACCESS_KEY_ID"
-
 # handle all non-zero exit status codes with a slack notification
 trap 'handler $?' EXIT
 
@@ -26,7 +23,7 @@ handler () {
 printf "%b" "${OKB}Starting docker container from image $MODEL:latest${NC}\n"
 # run the training on model
 docker rm -f classifier
-docker run --gpus all --name classifier -v "$PWD:/tmp" "$MODEL" -e ACCESS_KEY_ID -e SECRET_ACCESS_KEY_ID
+docker run --gpus all --name classifier -v "$PWD:/tmp" -e ACCESS_KEY_ID -e SECRET_ACCESS_KEY_ID "$MODEL"
 # check exit status on container image
 CONTAINER_STATUS=$(docker inspect classifier --format='{{.State.ExitCode}}')
 printf "%b" "${OKB}Container exited with status ${OKG}$CONTAINER_STATUS${NC}\n"
