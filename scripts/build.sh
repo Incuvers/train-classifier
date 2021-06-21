@@ -25,10 +25,11 @@ printf "%b" "${OKB}Copying source code to docker build context${NC}\n"
 cp -R "$GITHUB_WORKSPACE" docker/.
 printf "%b" "${OKG} ✓ ${NC}complete\n"
 
-printf "%b" "${OKB}Building image for model: $MODEL${NC}\n"
+printf "%b" "${OKB}Building image for model: $MODEL with mode: $MODE$${NC}\n"
 # find checkout folder
 docker build \
     -t "$MODEL":latest \
     -f docker/Dockerfile docker\
     --build-arg MODEL="$MODEL"
+    --build-arg MODE="$MODE"
 printf "%b" "${OKG} ✓ ${NC}$MODEL:latest built\n"
