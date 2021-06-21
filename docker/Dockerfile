@@ -7,6 +7,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 ARG MODEL
 ENV MODEL=$MODEL
 
+ARG MODE
+ENV MODE=$MODE
+
 # Generate locale and install container build dependancies
 RUN apt update && apt dist-upgrade --yes && apt install --yes sudo locales && locale-gen en_US.UTF-8
 RUN apt install -y wget
