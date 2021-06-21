@@ -16,7 +16,7 @@ inputs:
     description: 'Incuvers ml-ci aws s3 user secret access key'
     required: true
   MODE:
-    description: 'can only take on 'train' or 'eval' modes'
+    description: 'can only take on train or eval modes'
     default: 'train'
     required: false
 
