@@ -17,7 +17,7 @@ inputs:
     required: true
   MODE:
     description: 'can only take on train or eval modes'
-    required: true 
+    required: true
 
 runs:
   using: 'composite'
